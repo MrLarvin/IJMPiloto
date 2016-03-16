@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.IJMpiloto.model.Supplier;
 
 @Repository("supplierDao")
-public class SupplierDaoImpls extends AbstractDaos<Long, Supplier> implements SupplierDaos {
+public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements SupplierDao {
 
 	@Override
 	public Supplier findById(long id) {

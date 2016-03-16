@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.IJMpiloto.dao.SupplierDaos;
+import com.IJMpiloto.dao.SupplierDao;
 import com.IJMpiloto.model.Product;
 import com.IJMpiloto.model.Supplier;
 
@@ -16,7 +16,7 @@ import com.IJMpiloto.model.Supplier;
 public class SupplierServiceImpl implements SupplierService {
 
 	@Autowired
-	private SupplierDaos supplierDao;
+	private SupplierDao supplierDao;
 
 	@Override
 	public void saveSupplier(Supplier supplier) {

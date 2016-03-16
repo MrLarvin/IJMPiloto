@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.IJMpiloto.model.Product;
 
-public interface ProductDaos {
+public interface ProductDao {
 
 	public void save(Product product);
 

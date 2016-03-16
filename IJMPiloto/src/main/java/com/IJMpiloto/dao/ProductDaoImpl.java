@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.IJMpiloto.model.Product;
 
 @Repository("productDao")
-public class ProductDaoImpls extends AbstractDaos<Long, Product> implements ProductDaos {
+public class ProductDaoImpl extends AbstractDao<Long, Product> implements ProductDao {
 
 	@Override
 	public Product findById(long id) {

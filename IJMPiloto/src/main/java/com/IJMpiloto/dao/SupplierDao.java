@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.IJMpiloto.model.Supplier;
 
-public interface SupplierDaos {
+public interface SupplierDao {
 
 	public void save(Supplier supplier);
 
