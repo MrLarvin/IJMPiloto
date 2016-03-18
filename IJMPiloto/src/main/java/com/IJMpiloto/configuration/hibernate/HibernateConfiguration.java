@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+//comentario de prueba
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.IJMpiloto.configuration" })
