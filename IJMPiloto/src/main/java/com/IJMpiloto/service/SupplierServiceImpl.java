@@ -1,7 +1,6 @@
 package com.IJMpiloto.service;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +52,9 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public Set<Product> findSupplierProductsById(long id) {
-		Supplier entity = supplierDao.findById(id);
-		return entity.getProduct();
+	public List<Product> findSupplierProductsById(long id) {
+		/*Supplier entity = supplierDao.findById(id);
+		return entity.getProduct();*/
+		return null;
 	}
 }
