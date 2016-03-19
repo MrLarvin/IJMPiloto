@@ -36,6 +36,7 @@ public class Product {
 	@Column(name = "\"Description\"", nullable = false)
 	private String description;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "\"SupplierId\"")
 	@JsonManagedReference
