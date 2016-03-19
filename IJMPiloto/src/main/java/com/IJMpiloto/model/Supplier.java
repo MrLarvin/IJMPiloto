@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "\"Supplier\"")
@@ -43,10 +44,11 @@ public class Supplier {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = CascadeType.ALL)
 	private Set<Product> products;
 
+	@JsonProperty
 	public long getId() {
 		return id;
 	}
-
+	@JsonIgnore
 	public void setId(long id) {
 		this.id = id;
 	}

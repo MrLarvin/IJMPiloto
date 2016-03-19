@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "\"Product\"")
@@ -65,11 +66,11 @@ public class Product {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
-
+	@JsonProperty
 	public long getId() {
 		return id;
 	}
-
+	@JsonIgnore
 	public void setId(long id) {
 		this.id = id;
 	}
