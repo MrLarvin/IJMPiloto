@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,6 +60,7 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@JsonIgnore
 	public Supplier getSupplier() {
 		return supplier;
 	}

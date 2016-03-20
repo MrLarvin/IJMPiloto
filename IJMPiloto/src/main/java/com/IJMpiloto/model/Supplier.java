@@ -1,6 +1,6 @@
 package com.IJMpiloto.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class Supplier {
 
 	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
-	private List<Product> products;
+	private Set<Product> products;
 
 	@JsonProperty
 	public long getId() {
@@ -68,11 +68,12 @@ public class Supplier {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Product> getProduct() {
+
+	public Set<Product> getProduct() {
 		return products;
 	}
 
-	public void setProduct(List<Product> products) {
+	public void setProduct(Set<Product> products) {
 		this.products = products;
 	}
 }
