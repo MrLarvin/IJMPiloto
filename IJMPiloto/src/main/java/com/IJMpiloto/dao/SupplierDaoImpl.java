@@ -30,6 +30,7 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 	@Override
 	public List<Supplier> findAll() {
 		Criteria criteria = createEntityCriteria();
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		return (List<Supplier>) criteria.list();
 	}
 
