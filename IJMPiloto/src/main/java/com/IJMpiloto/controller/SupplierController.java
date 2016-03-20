@@ -40,12 +40,12 @@ public class SupplierController {
 	public ResponseEntity<Void> createSupplier(@RequestBody Supplier supplier) {
 
 		if (supplierService.isSupplierExist(supplier)) {
-			System.out.println("A User with name " + supplier.getName() + " already exist");
+			System.out.println("A Supplier with name " + supplier.getName() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
 		supplierService.saveSupplier(supplier);
-		System.out.println("A User with name " + supplier.getName() + " has been added");
+		System.out.println("A Supplier with name " + supplier.getName() + " has been added");
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 

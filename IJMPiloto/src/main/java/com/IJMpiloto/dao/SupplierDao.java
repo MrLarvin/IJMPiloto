@@ -13,4 +13,8 @@ public interface SupplierDao {
 	public Supplier findById(long id);
 	
 	public List<Supplier> findAll();
+	
+	public Supplier findByCode(String code);
+	
+	public Supplier findByName(String name);
 }

@@ -41,7 +41,7 @@ public class Supplier {
 	private String name;
 
 	@JsonBackReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
 	private List<Product> products;
 
 	@JsonProperty
