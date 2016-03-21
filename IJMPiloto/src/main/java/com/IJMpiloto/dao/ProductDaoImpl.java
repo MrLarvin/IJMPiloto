@@ -1,13 +1,10 @@
 package com.IJMpiloto.dao;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.IJMpiloto.model.Product;
-import com.IJMpiloto.model.Supplier;
 
 @Repository("productDao")
 public class ProductDaoImpl extends AbstractDao<Long, Product> implements ProductDao {

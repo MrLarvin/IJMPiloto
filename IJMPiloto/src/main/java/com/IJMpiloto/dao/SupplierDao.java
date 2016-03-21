@@ -14,7 +14,7 @@ public interface SupplierDao {
 	
 	public List<Supplier> findAll();
 	
-	public Supplier findByCode(String code);
+	public List<Supplier> findByCode(String code);
 	
-	public Supplier findByName(String name);
+	public List<Supplier> findByName(String name);
 }
