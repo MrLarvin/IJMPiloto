@@ -20,24 +20,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "\"Supplier\"")
+@Table(name = "\"supplier\"")
 public class Supplier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "\"Id\"", nullable = false)
+	@Column(name = "Id", nullable = false)
 	@JsonIgnore
 	private long id;
 
 	@NotNull
 	@Size(min = 10, max = 10)
 	@Pattern(regexp = "[vVjJeE][0-9]*")
-	@Column(name = "\"Code\"", nullable = false)
+	@Column(name = "Code", nullable = false)
 	private String code;
 
 	@NotNull
 	@Size(min = 5, max = 50)
-	@Column(name = "\"Name\"", nullable = false)
+	@Column(name = "Name", nullable = false)
 	private String name;
 	@JsonIgnore
 	@JsonBackReference

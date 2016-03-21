@@ -20,28 +20,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
-@Table(name = "\"Product\"")
+@Table(name = "Product")
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "\"Id\"")
+	@Column(name = "Id")
 	@JsonIgnore
 	private long id;
 
 	@NotNull
 	@Size(min = 3, max = 10)
-	@Column(name = "\"Code\"", nullable = false)
+	@Column(name = "Code", nullable = false)
 	private String code;
 
 	@NotNull
 	@Size(min = 5, max = 50)
-	@Column(name = "\"Description\"", nullable = false)
+	@Column(name = "Description", nullable = false)
 	private String description;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "\"SupplierId\"")
+	@JoinColumn(name = "Supplier_Id")
 	@JsonManagedReference
 	private Supplier supplier;
 
