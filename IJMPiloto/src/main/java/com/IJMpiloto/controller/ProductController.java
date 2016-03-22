@@ -27,25 +27,6 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping("/register")
-	public ModelAndView register() {
-		ModelAndView model = new ModelAndView("/product/form_register");
-		return model;
-	}
-
-	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public ModelAndView submit(@Valid @ModelAttribute("product1") ProductDto product1, BindingResult result) {
-		if (result.hasErrors()) {
-			ModelAndView model = new ModelAndView("/product/form_register");
-			model.addObject("message", "Un error ha ocurrido");
-			return model;
-		}
-
-		productService.saveProduct(product1);
-		ModelAndView model = new ModelAndView("home");
-		return model;
-	}
-
 	// create a Product
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> createProduct(@RequestBody ProductDto product) {
@@ -60,12 +41,11 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+	public ResponseEntity<Void> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto product) {
 		System.out.println("Updating Product " + id);
 		HttpStatus status;
 		try {
-			product.setId(id);
-			productService.updateProduct(product);
+			productService.updateProduct(product,id);
 			status = HttpStatus.OK;
 		} catch (Exception e) {
 			status = HttpStatus.CONFLICT;

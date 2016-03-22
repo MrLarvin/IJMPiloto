@@ -30,21 +30,19 @@ public class ProductServiceImpl implements ProductService {
 		product.setCode(productDTO.getCode());
 		product.setDescription(productDTO.getDescription());
 		
-		Supplier supplier = instanceSupplier(productDTO.getSupplier_id());
-		if(supplier!=null)
-		{
-			product.setSupplier(supplier);
-		}
+		
+		
 		productDAO.save(product);
 	}
 
 	@Override
-	public void updateProduct(Product product) {
-		Product entity = productDAO.findById(product.getId());
-		if (entity != null) {
-			entity.setCode(product.getCode());
-			entity.setDescription(product.getDescription());
-			entity.setSupplier(product.getSupplier());
+	public void updateProduct(ProductDto productDto,long id) {
+		Product product = productDAO.findById(id);
+		if (product != null) {
+			product.setCode(productDto.getCode());
+			product.setDescription(productDto.getDescription());
+			Supplier supplier = instanceSupplier(productDto.getSupplier_id());
+			product.setSupplier(supplier);
 		}
 	}
 
