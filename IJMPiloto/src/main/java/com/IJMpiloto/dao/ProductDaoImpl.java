@@ -21,7 +21,7 @@ public class ProductDaoImpl extends AbstractDao<Long, Product> implements Produc
 
 	@Override
 	public void delete(Product product) {
-		delete(product);
+		super.delete(product);
 	}
 
 	@SuppressWarnings("unchecked")
