@@ -1,7 +1,9 @@
 package com.IJMpiloto.service;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +84,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean isProductExist(String code) {
 		return (productDAO.findByCode(code)!=null);
+	}
+
+	@Override
+	public Set<ProductDto> EntityToDto(Set<Product> products) {
+		Set<ProductDto> productsDto = new HashSet<ProductDto>();
+		for (Product product : products) {
+		    ProductDto productDto = new ProductDto();
+		    productDto.setCode(product.getCode());
+		    productDto.setDescription(product.getDescription());
+		    productsDto.add(productDto);
+		}
+		return productsDto;
 	}
 
 }

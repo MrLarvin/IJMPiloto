@@ -69,11 +69,11 @@ public class Supplier {
 		this.name = name;
 	}
 
-	public Set<Product> getProduct() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 	@JsonIgnore
-	public void setProduct(Set<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 }

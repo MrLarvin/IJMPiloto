@@ -16,6 +16,9 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 		return getByKey(id);
 	}
 	
+	public void update(Supplier supplier) {
+		super.update(supplier);
+	}
 	@Override
 	public void save(Supplier supplier) {
 		persist(supplier);
@@ -47,4 +50,6 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 		criteria.add(Restrictions.eq("name",name));
 		return (Supplier) criteria.uniqueResult();
 	}
+	
+
 }

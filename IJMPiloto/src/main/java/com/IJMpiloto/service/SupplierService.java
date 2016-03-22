@@ -10,9 +10,9 @@ import com.IJMpiloto.model.Supplier;
 @Transactional
 public interface SupplierService {
 
-	public void saveSupplier(Supplier supplier);
+	public void saveSupplier(SupplierDto supplierDto);
 
-	public void updateSupplier(Supplier supplier);
+	public void updateSupplier(SupplierDto supplierDto, String code);
 
 	public void deleteSupplier(Supplier supplier);
 
@@ -23,8 +23,10 @@ public interface SupplierService {
 	public Supplier findSupplierByCode(String code);
 
 	public List<Supplier> findAllSuppliers();
+	
+	public List<SupplierDto> findAllSuppliersDto();
 
-	public boolean isSupplierExist(Supplier supplier);
+	public boolean isSupplierExist(String code);
 	
 	public List<Product> findSupplierProductsById(long id);
 	

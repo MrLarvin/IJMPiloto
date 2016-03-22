@@ -1,8 +1,10 @@
 package com.IJMpiloto.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.IJMpiloto.dto.ProductDto;
+import com.IJMpiloto.model.Product;
 
 public interface ProductService {
 
@@ -17,5 +19,7 @@ public interface ProductService {
 	public List<ProductDto> findAllProductsDto();
 
 	public boolean isProductExist(String code);
+	
+	public Set<ProductDto> EntityToDto(Set<Product> products);
 	
 }
