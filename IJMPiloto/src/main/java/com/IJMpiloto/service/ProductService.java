@@ -3,22 +3,19 @@ package com.IJMpiloto.service;
 import java.util.List;
 
 import com.IJMpiloto.dto.ProductDto;
-import com.IJMpiloto.model.Product;
-import com.IJMpiloto.model.Supplier;
 
 public interface ProductService {
 
 	public void saveProduct(ProductDto  product);
 	
-	public void updateProduct(ProductDto product, long id);
+	void updateProduct(ProductDto productDto, String code);
 	
-	public void deleteProduct(Product product);
+	public void deleteProduct(String code);
 	
-	public Product findProductById(long id);
+	public ProductDto findProductDtoByCode(String code);
 
-	public List<Product> findAllProducts();
+	public List<ProductDto> findAllProductsDto();
 
-	public boolean isProductExist(ProductDto product);
+	public boolean isProductExist(String code);
 	
-	public Supplier instanceSupplier(long id);
 }

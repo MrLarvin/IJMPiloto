@@ -2,22 +2,18 @@ package com.IJMpiloto.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.IJMpiloto.dto.ProductDto;
-import com.IJMpiloto.model.Product;
 import com.IJMpiloto.service.ProductService;
 
 @RestController
@@ -29,23 +25,23 @@ public class ProductController {
 
 	// create a Product
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> createProduct(@RequestBody ProductDto product) {
-		if (productService.isProductExist(product)) {
-			System.out.println("A User with name " + product.getDescription() + " already exist");
+	public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto) {
+		if (productService.isProductExist(productDto.getCode())) {
+			System.out.println("A User with name " + productDto.getDescription() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
-		productService.saveProduct(product);
-		System.out.println("A User with name " + product.getDescription() + " has been added");
+		productService.saveProduct(productDto);
+		System.out.println("A User with name " + productDto.getDescription() + " has been added");
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto product) {
-		System.out.println("Updating Product " + id);
+	@RequestMapping(value = "/{code}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateProduct(@PathVariable("code") String code, @RequestBody ProductDto productDto) {
+		System.out.println("Updating Product " + code);
 		HttpStatus status;
 		try {
-			productService.updateProduct(product,id);
+			productService.updateProduct(productDto, code);
 			status = HttpStatus.OK;
 		} catch (Exception e) {
 			status = HttpStatus.CONFLICT;
@@ -54,37 +50,37 @@ public class ProductController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Product>> listAllProducts() {
-		List<Product> products = productService.findAllProducts();
+	public ResponseEntity<List<ProductDto>> listAllProducts() {
+		List<ProductDto> products = productService.findAllProductsDto();
 		if (products.isEmpty()) {
-			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<ProductDto>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+		return new ResponseEntity<List<ProductDto>>(products, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Product> getProduct(@PathVariable("id") long id) {
-		System.out.println("Fetching User with id " + id);
+	@RequestMapping(value = "/{code}", method = RequestMethod.GET)
+	public ResponseEntity<ProductDto> getProduct(@PathVariable("code") String code) {
+		System.out.println("Fetching User with code " + code);
 
-		Product product = productService.findProductById(id);
-		if (product == null) {
-			System.out.println("Supplier with id " + id + " not found");
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+		ProductDto productDto = productService.findProductDtoByCode(code);
+		if (productDto == null) {
+			System.out.println("Product with code " + code + " not found");
+			return new ResponseEntity<ProductDto>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Product>(product, HttpStatus.OK);
+		return new ResponseEntity<ProductDto>(productDto, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Product> deleteSupplier(@PathVariable("id") long id) {
-		System.out.println("Fetching & Deleting User with id " + id);
+	@RequestMapping(value = "/{code}", method = RequestMethod.DELETE)
+	public ResponseEntity<ProductDto> deleteSupplier(@PathVariable("code") String code) {
+		System.out.println("Fetching & Deleting User with id " + code);
 
-		Product product = productService.findProductById(id);
-		if (product == null) {
-			System.out.println("Unable to delete. supplier with id " + id + " not found");
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+		
+		if (!productService.isProductExist(code)) {
+			System.out.println("Unable to delete. supplier with code " + code + " not found");
+			return new ResponseEntity<ProductDto>(HttpStatus.NOT_FOUND);
 		}
-
-		productService.deleteProduct(product);
-		return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+		
+		productService.deleteProduct(code);
+		return new ResponseEntity<ProductDto>(HttpStatus.NO_CONTENT);
 	}
 }

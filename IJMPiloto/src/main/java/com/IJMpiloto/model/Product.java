@@ -25,7 +25,6 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
-	@JsonIgnore
 	private long id;
 
 	@NotNull
@@ -41,7 +40,6 @@ public class Product {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Supplier_Id")
-	@JsonManagedReference
 	private Supplier supplier;
 
 	public String getCode() {
@@ -59,7 +57,6 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@JsonIgnore
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -67,11 +64,9 @@ public class Product {
 	public void setSupplier(Supplier supplier2) {
 		this.supplier = supplier2;
 	}
-	@JsonProperty
 	public long getId() {
 		return id;
 	}
-	@JsonIgnore
 	public void setId(long id) {
 		this.id = id;
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.IJMpiloto.dao.SupplierDao;
+import com.IJMpiloto.dto.SupplierDto;
 import com.IJMpiloto.model.Product;
 import com.IJMpiloto.model.Supplier;
 
@@ -48,7 +49,7 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public boolean isSupplierExist(Supplier supplier) {
-		if(!supplierDao.findByCode(supplier.getCode()).isEmpty()||!supplierDao.findByName(supplier.getName()).isEmpty())
+		if(supplierDao.findByCode(supplier.getCode())!=null||supplierDao.findByName(supplier.getName())!=null)
 		{
 			return true;
 		}
@@ -60,5 +61,32 @@ public class SupplierServiceImpl implements SupplierService {
 		/*Supplier entity = supplierDao.findById(id);
 		return entity.getProduct();*/
 		return null;
+	}
+
+	@Override
+	public SupplierDto findSupplierDtoByCode(String code) {
+		Supplier supplier = supplierDao.findByCode(code);
+		SupplierDto supplierDto = new SupplierDto();
+		supplierDto.setCode(supplier.getCode());
+		supplierDto.setName(supplier.getName());
+		return supplierDto;
+	}
+
+	@Override
+	public Supplier findSupplierByCode(String code) {
+		return supplierDao.findByCode(code);
+	}
+
+	@Override
+	public Supplier DtoToEntity(SupplierDto supplierDto) {
+		return supplierDao.findByCode(supplierDto.getCode());
+	}
+
+	@Override
+	public SupplierDto EntityToDto(Supplier supplier) {
+		SupplierDto supplierDto = new SupplierDto();
+		supplierDto.setCode(supplier.getCode());
+		supplierDto.setName(supplier.getName());
+		return supplierDto;
 	}
 }

@@ -34,19 +34,17 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 		return (List<Supplier>) criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Supplier> findByCode(String code) {
+	public Supplier findByCode(String code) {
 		Criteria criteria = getSession().createCriteria(Supplier.class);
 		criteria.add(Restrictions.eq("code",code));
-		return criteria.list();
+		return (Supplier) criteria.uniqueResult();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Supplier> findByName(String name) {
+	public Supplier findByName(String name) {
 		Criteria criteria = getSession().createCriteria(Supplier.class);
 		criteria.add(Restrictions.eq("name",name));
-		return criteria.list();
+		return (Supplier) criteria.uniqueResult();
 	}
 }

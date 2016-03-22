@@ -33,11 +33,13 @@ public class ProductDaoImpl extends AbstractDao<Long, Product> implements Produc
 		return (List<Product>) criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> findByCode(String code) {
+	public Product findByCode(String code) {
 		Criteria criteria = getSession().createCriteria(Product.class);
 		criteria.add(Restrictions.eq("code",code));
-		return criteria.list();
+		return (Product) criteria.uniqueResult();
+	}
+	public void update(Product product) {
+		super.update(product);
 	}
 }
