@@ -76,8 +76,6 @@ public class SupplierController {
 		return new ResponseEntity<Void>(status);
 	}
 
-
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Supplier> deleteSupplier(@PathVariable("id") long id) {
 		System.out.println("Fetching & Deleting User with id " + id);

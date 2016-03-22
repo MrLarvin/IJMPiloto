@@ -23,7 +23,7 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 
 	@Override
 	public void delete(Supplier supplier) {
-		delete(supplier);
+		super.delete(supplier);
 	}
 
 	@SuppressWarnings("unchecked")
