@@ -40,7 +40,7 @@ public class Product {
 	private String description;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Supplier_Id")
 	@JsonManagedReference
 	private Supplier supplier;
