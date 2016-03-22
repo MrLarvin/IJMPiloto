@@ -48,7 +48,7 @@ public class SupplierController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> createSupplier(@RequestBody Supplier supplier,UriComponentsBuilder ucBuilder) {
 
-        System.out.println("Creating Supplier " + supplier.getName());
+        System.out.println("Creating User " + supplier.getName());
         
         if (supplierService.isSupplierExist(supplier)) {
             System.out.println("A Supplier with name " + supplier.getName() + " already exist");

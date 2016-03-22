@@ -39,7 +39,6 @@ public class Supplier {
 	@Size(min = 5, max = 50)
 	@Column(name = "Name", nullable = false)
 	private String name;
-	
 	@JsonIgnore
 	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
@@ -69,12 +68,12 @@ public class Supplier {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Set<Product> getProducts() {
+
+	public Set<Product> getProduct() {
 		return products;
 	}
 	@JsonIgnore
-	public void setProducts(Set<Product> products) {
+	public void setProduct(Set<Product> products) {
 		this.products = products;
 	}
 }
