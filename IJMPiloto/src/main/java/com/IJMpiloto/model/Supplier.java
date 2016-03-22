@@ -26,7 +26,6 @@ public class Supplier {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
-	@JsonIgnore
 	private long id;
 
 	@NotNull
@@ -39,16 +38,15 @@ public class Supplier {
 	@Size(min = 5, max = 50)
 	@Column(name = "Name", nullable = false)
 	private String name;
-	@JsonIgnore
-	@JsonBackReference
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
 	private Set<Product> products;
 
-	@JsonProperty
+
 	public long getId() {
 		return id;
 	}
-	@JsonIgnore
+
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -72,7 +70,7 @@ public class Supplier {
 	public Set<Product> getProducts() {
 		return products;
 	}
-	@JsonIgnore
+
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
