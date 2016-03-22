@@ -2,6 +2,7 @@ package com.IJMpiloto.dao;
 
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.IJMpiloto.model.Product;
@@ -30,5 +31,13 @@ public class ProductDaoImpl extends AbstractDao<Long, Product> implements Produc
 		Criteria criteria = createEntityCriteria();
 		System.out.print(criteria.list());
 		return (List<Product>) criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> findByCode(String code) {
+		Criteria criteria = getSession().createCriteria(Product.class);
+		criteria.add(Restrictions.eq("code",code));
+		return criteria.list();
 	}
 }

@@ -1,6 +1,5 @@
 package com.IJMpiloto.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +16,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.IJMpiloto.model.Supplier;
 
 @Entity
 @Table(name = "Product")
@@ -65,8 +64,8 @@ public class Product {
 		return supplier;
 	}
 
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
+	public void setSupplier(Supplier supplier2) {
+		this.supplier = supplier2;
 	}
 	@JsonProperty
 	public long getId() {

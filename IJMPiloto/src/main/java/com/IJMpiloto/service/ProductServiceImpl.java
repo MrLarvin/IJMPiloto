@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.IJMpiloto.dao.ProductDao;
+import com.IJMpiloto.dao.SupplierDaoImpl;
+import com.IJMpiloto.dto.ProductDto;
 import com.IJMpiloto.model.Product;
+import com.IJMpiloto.model.Supplier;
 
 @Transactional
 @Service("productService")
@@ -15,9 +18,23 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ProductDao productDAO;
+	
+	@Autowired
+	private SupplierDaoImpl supplierDao;
 
 	@Override
-	public void saveProduct(Product product) {
+	public void saveProduct(ProductDto productDTO) {
+		//codigo de mapeo
+		
+		Product product = new Product();
+		product.setCode(productDTO.getCode());
+		product.setDescription(productDTO.getDescription());
+		
+		Supplier supplier = instanceSupplier(productDTO.getSupplier_id());
+		if(supplier!=null)
+		{
+			product.setSupplier(supplier);
+		}
 		productDAO.save(product);
 	}
 
@@ -47,8 +64,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean isProductExist(Product product) {
-		return (productDAO.findById(product.getId()) != null);
+	public boolean isProductExist(ProductDto product) {
+		return (productDAO.findByCode(product.getCode()).isEmpty());
+	}
+
+	@Override
+	public Supplier instanceSupplier(long id) {
+		
+		return supplierDao.findById(id);
 	}
 
 }

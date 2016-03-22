@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.IJMpiloto.dto.ProductDto;
 import com.IJMpiloto.model.Product;
 import com.IJMpiloto.service.ProductService;
 
@@ -33,7 +34,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public ModelAndView submit(@Valid @ModelAttribute("product1") Product product1, BindingResult result) {
+	public ModelAndView submit(@Valid @ModelAttribute("product1") ProductDto product1, BindingResult result) {
 		if (result.hasErrors()) {
 			ModelAndView model = new ModelAndView("/product/form_register");
 			model.addObject("message", "Un error ha ocurrido");
@@ -47,7 +48,7 @@ public class ProductController {
 
 	// create a Product
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> createProduct(@RequestBody Product product) {
+	public ResponseEntity<Void> createProduct(@RequestBody ProductDto product) {
 		if (productService.isProductExist(product)) {
 			System.out.println("A User with name " + product.getDescription() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);

@@ -14,4 +14,5 @@ public interface ProductDao {
 
 	public Product findById(long id);
 	
+	public List<Product> findByCode(String code);
 }
