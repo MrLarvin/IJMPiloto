@@ -60,10 +60,11 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	@JsonIgnore
 	public Supplier getSupplier() {
 		return supplier;
 	}
+
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}

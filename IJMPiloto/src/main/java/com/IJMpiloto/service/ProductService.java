@@ -17,5 +17,4 @@ public interface ProductService {
 	public List<Product> findAllProducts();
 
 	public boolean isProductExist(Product product);
-	
 }
