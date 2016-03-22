@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "\"supplier\"")
+@Table(name = "Supplier")
 public class Supplier {
 
 	@Id

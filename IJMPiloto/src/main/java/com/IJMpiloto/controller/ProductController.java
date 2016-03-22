@@ -49,12 +49,12 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> createProduct(@RequestBody Product product) {
 		if (productService.isProductExist(product)) {
-			System.out.println("A User with name " + product.getDescription() + " already exist");
+			System.out.println("A Product with name " + product.getDescription() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
 		productService.saveProduct(product);
-		System.out.println("A User with name " + product.getDescription() + " has been added");
+		System.out.println("A Product with name " + product.getDescription() + " has been added");
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
@@ -83,11 +83,11 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Product> getProduct(@PathVariable("id") long id) {
-		System.out.println("Fetching User with id " + id);
+		System.out.println("Fetching Product with id " + id);
 
 		Product product = productService.findProductById(id);
 		if (product == null) {
-			System.out.println("Supplier with id " + id + " not found");
+			System.out.println("Product with id " + id + " not found");
 			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
@@ -95,11 +95,11 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Product> deleteSupplier(@PathVariable("id") long id) {
-		System.out.println("Fetching & Deleting User with id " + id);
+		System.out.println("Fetching & Deleting Product with id " + id);
 
 		Product product = productService.findProductById(id);
 		if (product == null) {
-			System.out.println("Unable to delete. supplier with id " + id + " not found");
+			System.out.println("Unable to delete. Product with id " + id + " not found");
 			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
 		}
 
