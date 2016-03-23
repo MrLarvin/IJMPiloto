@@ -14,7 +14,7 @@ public interface SupplierService {
 
 	public void updateSupplier(SupplierDto supplierDto, String code);
 
-	public void deleteSupplier(Supplier supplier);
+	public void deleteSupplier(String code);
 
 	public Supplier findSupplierById(long id);
 	

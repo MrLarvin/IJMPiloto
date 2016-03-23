@@ -80,13 +80,12 @@ public class SupplierController {
 	public ResponseEntity<Supplier> deleteSupplier(@PathVariable("code") String code) {
 		System.out.println("Fetching & Deleting User with code " + code);
 
-		Supplier supplier = supplierService.findSupplierByCode(code);
-		if (supplier == null) {
+		if (supplierService.isSupplierExist(code)) {
 			System.out.println("Unable to delete. supplier with code " + code + " not found");
 			return new ResponseEntity<Supplier>(HttpStatus.NOT_FOUND);
 		}
 
-		supplierService.deleteSupplier(supplier);
+		supplierService.deleteSupplier(code);
 		return new ResponseEntity<Supplier>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -40,7 +40,8 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public void deleteSupplier(Supplier supplier) {
+	public void deleteSupplier(String code) {
+		Supplier supplier = findSupplierByCode(code);
 		supplierDao.delete(supplier);
 	}
 
