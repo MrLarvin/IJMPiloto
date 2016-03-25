@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import com.IJMpiloto.model.ProductImage;
 
+@Repository("productImageDao")
 public class ProductImageDaoImpl extends AbstractDao<Long,ProductImage> implements ProductImageDao{
 
 	@Override

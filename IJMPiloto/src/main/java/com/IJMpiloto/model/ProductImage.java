@@ -1,5 +1,7 @@
 package com.IJMpiloto.model;
 
+import java.sql.SQLException;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "\"productimage\"")
@@ -26,10 +30,10 @@ public class ProductImage {
 		this.id = id;
 	}
 	public byte[] getPicture() {
-		return picture;
+		return this.picture;
 	}
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
-	}
+	} 
 	
 }
