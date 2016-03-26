@@ -12,7 +12,7 @@ import com.IJMpiloto.model.Product;
 @Transactional
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
-	
+
 	@Autowired
 	private ProductDao productDAO;
 

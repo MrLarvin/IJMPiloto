@@ -1,6 +1,7 @@
 package com.IJMpiloto.service;
 
 import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.IJMpiloto.model.Product;
@@ -20,6 +21,6 @@ public interface SupplierService {
 	public List<Supplier> findAllSuppliers();
 
 	public boolean isSupplierExist(Supplier supplier);
-	
+
 	public List<Product> findSupplierProductsById(long id);
 }

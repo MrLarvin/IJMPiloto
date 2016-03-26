@@ -15,7 +15,7 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 	public Supplier findById(long id) {
 		return getByKey(id);
 	}
-	
+
 	@Override
 	public void save(Supplier supplier) {
 		persist(supplier);
@@ -38,7 +38,7 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 	@Override
 	public List<Supplier> findByCode(String code) {
 		Criteria criteria = getSession().createCriteria(Supplier.class);
-		criteria.add(Restrictions.eq("code",code));
+		criteria.add(Restrictions.eq("code", code));
 		return criteria.list();
 	}
 
@@ -46,7 +46,7 @@ public class SupplierDaoImpl extends AbstractDao<Long, Supplier> implements Supp
 	@Override
 	public List<Supplier> findByName(String name) {
 		Criteria criteria = getSession().createCriteria(Supplier.class);
-		criteria.add(Restrictions.eq("name",name));
+		criteria.add(Restrictions.eq("name", name));
 		return criteria.list();
 	}
 }

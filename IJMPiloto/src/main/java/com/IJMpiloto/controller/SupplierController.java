@@ -34,7 +34,7 @@ public class SupplierController {
 		return new ResponseEntity<List<Supplier>>(suppliers, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Supplier> getUser(@PathVariable("id") long id) {
 		System.out.println("Fetching User with id " + id);
 		Supplier supplier = supplierService.findSupplierById(id);
@@ -44,22 +44,22 @@ public class SupplierController {
 		}
 		return new ResponseEntity<Supplier>(supplier, HttpStatus.OK);
 	}
-	
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> createSupplier(@RequestBody Supplier supplier,UriComponentsBuilder ucBuilder) {
 
-        System.out.println("Creating User " + supplier.getName());
-        
-        if (supplierService.isSupplierExist(supplier)) {
-            System.out.println("A Supplier with name " + supplier.getName() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
- 
-        supplierService.saveSupplier(supplier);
- 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/supplier/{id}").buildAndExpand(supplier.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> createSupplier(@RequestBody Supplier supplier, UriComponentsBuilder ucBuilder) {
+
+		System.out.println("Creating User " + supplier.getName());
+
+		if (supplierService.isSupplierExist(supplier)) {
+			System.out.println("A Supplier with name " + supplier.getName() + " already exist");
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+
+		supplierService.saveSupplier(supplier);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ucBuilder.path("/supplier/{id}").buildAndExpand(supplier.getId()).toUri());
+		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
