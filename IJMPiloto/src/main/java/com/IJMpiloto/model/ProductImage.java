@@ -1,7 +1,5 @@
 package com.IJMpiloto.model;
 
-import java.sql.SQLException;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "\"productimage\"")
@@ -23,6 +19,9 @@ public class ProductImage {
 	@Lob
 	@Column(name = "image", nullable = false)
 	private byte[] picture;
+	
+	@Column(name = "checksum",nullable = false)
+	private String checksum;
 	public long getId() {
 		return id;
 	}
@@ -34,6 +33,11 @@ public class ProductImage {
 	}
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+	public String getChecksum() {
+		return checksum;
+	}
+	public void setChecksum(String checksum) {
+		this.checksum = checksum;
 	} 
-	
 }

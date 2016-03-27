@@ -1,5 +1,6 @@
 package com.IJMpiloto.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.IJMpiloto.dao.ProductImageDao;
 import com.IJMpiloto.dto.ProductImageDto;
 import com.IJMpiloto.model.ProductImage;
+import com.IJMpiloto.util.ChecksumConverter;
 
 @Transactional
 @Service("productImageService")
@@ -65,6 +67,12 @@ public class ProductImageServiceImpl implements ProductImageService{
 		ProductImage productImage = new ProductImage();
 		byte[] newPicture = Base64.getDecoder().decode(productImageDto.getPicture());
 		productImage.setPicture(newPicture);
+		try {
+			productImage.setChecksum(ChecksumConverter.getSHA(newPicture));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return productImage;
 	}
 	
