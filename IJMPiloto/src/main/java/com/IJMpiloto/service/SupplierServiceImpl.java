@@ -48,7 +48,8 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public boolean isSupplierExist(Supplier supplier) {
-		return !(supplierDao.findByCode(supplier.getCode()).isEmpty() && supplierDao.findByName(supplier.getName()).isEmpty());
+		return !(supplierDao.findByCode(supplier.getCode()).isEmpty()
+				&& supplierDao.findByName(supplier.getName()).isEmpty());
 	}
 
 	@Override
